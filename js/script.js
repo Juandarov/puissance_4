@@ -7,6 +7,8 @@ var tableau = [
     [0, 0, 0, 0, 0, 0, 0]
 ];
 
+var joueur = 1;
+
 function update() {
     var lignes = document.getElementsByTagName("tr");
 
@@ -16,9 +18,21 @@ function update() {
         for (var j = 0; j < boxes.length; j++) {
             if (tableau[i-1][j] == 1 && boxes[j].innerHTML == '') {
                 var jeton = document.createElement("div");
-                jeton.className = "pion";
+
+                if (joueur == 1) {
+                    jeton.className = "pionRed";
+                } else {
+                    jeton.className = "pionYellow";
+                }
+
+
                 boxes[j].appendChild(jeton);
-                console.log(boxes[j]);
+
+                if (joueur == 1) {
+                    joueur = 2;
+                } else {
+                    joueur = 1;
+                }
             }
         }
     }
@@ -30,8 +44,6 @@ function jouer(element) {
         i++;
     }
     tableau[i-1][element.id] = 1;
-
-    printTab();
     update();
 }
 
@@ -64,6 +76,20 @@ function genGrille() {
     }
 }
 
+function reset() {
+    var tds = document.getElementsByTagName('td');
+    for (var i=0; i<tds.length; i++) {
+        tds[i].innerHTML = "";
+    }
+    tableau = [
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0]
+    ];
+}
 
 // DEBUG
 
