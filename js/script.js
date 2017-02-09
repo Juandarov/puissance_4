@@ -16,7 +16,7 @@ function update() {
         var boxes = lignes[i].getElementsByTagName("td");
 
         for (var j = 0; j < boxes.length; j++) {
-            if (tableau[i-1][j] == 1 && boxes[j].innerHTML == '') {
+            if (tableau[i-1][j] != 0 && boxes[j].innerHTML == '') {
                 var jeton = document.createElement("div");
 
                 if (joueur == 1) {
@@ -43,7 +43,7 @@ function jouer(element) {
     while (i < 6 && tableau[i][element.id] == 0) {
         i++;
     }
-    tableau[i-1][element.id] = 1;
+    tableau[i-1][element.id] = joueur;
     update();
 }
 
@@ -97,4 +97,18 @@ function printTab() {
     for (var i = 0; i < tableau.length; i++) {
         console.log(tableau[i]);
     }
+}
+
+function checkWinner() {
+    for (var i = 0; i < tableau.length; i++) {
+
+        for (var j = 0; j < tableau[0].length; j++) {
+            if (tableau[i][j] != 0) {
+                var couleur = tableau[i][j];
+            }
+
+        }
+
+    }
+
 }
