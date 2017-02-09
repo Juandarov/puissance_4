@@ -1,3 +1,40 @@
+var tableau = [
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0]
+];
+
+function update() {
+    var lignes = document.getElementsByTagName("tr");
+
+    for (var i = 1; i < lignes.length; i++) {
+        var boxes = lignes[i].getElementsByTagName("td");
+
+        for (var j = 0; j < boxes.length; j++) {
+            if (tableau[i-1][j] == 1 && boxes[j].innerHTML == '') {
+                var jeton = document.createElement("div");
+                jeton.className = "pion";
+                boxes[j].appendChild(jeton);
+                console.log(boxes[j]);
+            }
+        }
+    }
+}
+
+function jouer(element) {
+    var i = 1;
+    while (i < 6 && tableau[i][element.id] == 0) {
+        i++;
+    }
+    tableau[i-1][element.id] = 1;
+
+    printTab();
+    update();
+}
+
 function genGrille() {
     var grille = document.getElementById('grille');
 
@@ -9,7 +46,10 @@ function genGrille() {
         head.appendChild(th);
 
         var button = document.createElement("button");
-        button.addEventListener("click", function() {jouer(i)});
+        button.id = i;
+        button.addEventListener("click", function() {
+            jouer(this);
+        });
         th.appendChild(button);
     }
 
@@ -24,43 +64,8 @@ function genGrille() {
     }
 }
 
-var tableau = [
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0]
-];
 
-function jouer(numCol) {
-
-    var i = 0;
-    while (i < 6 && tableau[i][numCol] == 0) {
-        i++;
-    }
-    tableau[i-1][numCol-1] = 1;
-
-    printTab();
-
-    update();
-}
-
-function update() {
-    var lignes = document.getElementsByTagName("tr");
-    console.log("lignes : " + lignes.length);
-    for (var i = 1; i < lignes.length; i++) {
-        var boxes = lignes[i].getElementsByTagName("th");
-
-        for (var j = 0; j < boxes.length; j++) {
-            if (tableau[i][j] == 1) {
-                var jeton = document.createElement("div");
-                jeton.className = "pion";
-                boxes[j].appendChild(jeton);
-            }
-        }
-    }
-}
+// DEBUG
 
 function printTab() {
     for (var i = 0; i < tableau.length; i++) {
