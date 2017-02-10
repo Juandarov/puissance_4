@@ -56,7 +56,8 @@ td {
     width: 5em;
     height: 5em;
     border: solid 1px black;
-    background-color: rgba(217, 179, 82, 0.9);
+    background-color: rgba(235, 190, 76, 0.73);
+    border-radius: 50%;
 }
 
 div {
