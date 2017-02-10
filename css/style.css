@@ -1,15 +1,19 @@
 body {
     text-align: center;
+    background-image: url(../image/retro.jpg);
+    background-size: cover;
 }
 
 #grille {
     margin: auto;
+    box-shadow: 0 0 10px;
 }
 
 td {
     width: 5em;
     height: 5em;
     border: solid 1px black;
+    background-color: rgba(221, 221, 221, 0.72);
 }
 
 div {
