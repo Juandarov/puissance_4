@@ -8,6 +8,7 @@ var tableau = [
 ];
 
 var joueur = 1;
+var couleurJoueurs = ['rouge', 'jaune'];
 
 function update() {
     var lignes = document.getElementsByTagName("tr");
@@ -30,7 +31,7 @@ function update() {
 
                 var winner = checkWinner();
                 if (winner != 0) {
-                    alert('Le joueur ' + winner + ' à gagné !');
+                    alert('Le joueur ' + couleurJoueurs[winner-1] + ' à gagné !');
                 }
 
                 if (joueur == 1) {
@@ -96,14 +97,6 @@ function reset() {
     ];
 }
 
-// DEBUG
-
-function printTab() {
-    for (var i = 0; i < tableau.length; i++) {
-        console.log(tableau[i]);
-    }
-}
-
 function checkWinner() {
     for (var i = 0; i < tableau.length; i++) {
         for (var j = 0; j < tableau[0].length; j++) {
@@ -122,26 +115,7 @@ function checkWinner() {
                 }
                 iNext = i;
 
-
-                while (iNext > -1 && tableau[iNext][j] == couleur) {
-                    iNext--;
-                }
-
-                if (i - iNext == 4) {
-                    return joueur;
-                }
-                iNext = i;
-
                 while (jNext < tableau[0].length && tableau[i][jNext] == couleur) {
-                    jNext++;
-                }
-
-                if (j - jNext == 4) {
-                    return joueur;
-                }
-                jNext = j;
-
-                while (jNext > -1 && tableau[i][jNext] == couleur) {
                     jNext++;
                 }
 
@@ -171,31 +145,16 @@ function checkWinner() {
                 }
                 iNext = i;
                 jNext = j;
-
-                while (iNext > -1 && jNext < tableau[0].length && tableau[iNext][jNext] == couleur) {
-                    iNext--;
-                    jNext++;
-                }
-
-                if (i - iNext == 4 && jNext - j == 4) {
-                    return joueur;
-                }
-                iNext = i;
-                jNext = j;
-
-                while (iNext > -1 && jNext > -1 && tableau[iNext][jNext] == couleur) {
-                    iNext--;
-                    jNext--;
-                }
-
-                if (i - iNext == 4 && j - jNext == 4) {
-                    return joueur;
-                }
-                iNext = i;
-                jNext = j;
-
             }
         }
     }
     return 0;
+}
+
+// DEBUG
+
+function printTab() {
+    for (var i = 0; i < tableau.length; i++) {
+        console.log(tableau[i]);
+    }
 }
