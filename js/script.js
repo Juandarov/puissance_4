@@ -10,6 +10,8 @@ var tableau = [
 var joueur = 1;
 var couleurJoueurs = ['rouge', 'jaune'];
 
+var score = [0, 0];
+
 function update() {
     var lignes = document.getElementsByTagName("tr");
 
@@ -17,7 +19,7 @@ function update() {
         var boxes = lignes[i].getElementsByTagName("td");
 
         for (var j = 0; j < boxes.length; j++) {
-            if (tableau[i-1][j] != 0 && boxes[j].innerHTML == '') {
+            if (tableau[i - 1][j] != 0 && boxes[j].innerHTML == '') {
                 var jeton = document.createElement("div");
 
                 if (joueur == 1) {
@@ -31,7 +33,8 @@ function update() {
 
                 var winner = checkWinner();
                 if (winner != 0) {
-                    alert('Le joueur ' + couleurJoueurs[winner-1] + ' à gagné !');
+                    alert('Le joueur ' + couleurJoueurs[winner - 1] + ' à gagné !');
+                    updateScore(joueur);
                 }
 
                 if (joueur == 1) {
@@ -44,12 +47,24 @@ function update() {
     }
 }
 
+function updateScore(joueur) {
+    score[joueur - 1]++;
+
+    if (joueur == 1) {
+        var scorej = document.getElementById('score1');
+    } else {
+        var scorej = document.getElementById('score2');
+    }
+
+    scorej.innerHTML = score[joueur - 1];
+}
+
 function jouer(element) {
     var i = 1;
     while (i < 6 && tableau[i][element.id] == 0) {
         i++;
     }
-    tableau[i-1][element.id] = joueur;
+    tableau[i - 1][element.id] = joueur;
     update();
 }
 
@@ -85,7 +100,7 @@ function genGrille() {
 
 function reset() {
     var tds = document.getElementsByTagName('td');
-    for (var i=0; i<tds.length; i++) {
+    for (var i = 0; i < tds.length; i++) {
         tds[i].innerHTML = "";
     }
     tableau = [
