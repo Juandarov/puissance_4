@@ -50,6 +50,7 @@ p {
     background-color: #007ba4;
     padding: 1em;
     border-radius: .5em;
+    overflow: hidden;
 }
 
 td {
@@ -60,10 +61,16 @@ td {
     border-radius: 50%;
 }
 
+@keyframes fall {
+    from {transform: translate(0, -30em);}
+    to {transform: none;}
+}
+
 div {
     width: 100%;
     height: 100%;
     border-radius: 50%;
+    animation: fall .1s linear;
 }
 
 .pionRed {
