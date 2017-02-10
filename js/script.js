@@ -65,6 +65,7 @@ function genGrille() {
 
         var button = document.createElement("button");
         button.id = i;
+        button.innerHTML = '&#8659;';
         button.addEventListener("click", function() {
             jouer(this);
         });

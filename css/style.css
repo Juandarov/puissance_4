@@ -1,19 +1,24 @@
 body {
     text-align: center;
-    background-image: url(../image/retro.jpg);
+    background-image: url('../images/retro.jpg');
     background-size: cover;
 }
 
 #grille {
     margin: auto;
+    margin-top: 6em;
     box-shadow: 0 0 10px;
+    background-color: #007ba4;
+    /*#814d00;*/
+    padding: 1em;
+    border-radius: .5em;
 }
 
 td {
     width: 5em;
     height: 5em;
     border: solid 1px black;
-    background-color: rgba(221, 221, 221, 0.72);
+    background-color: rgba(217, 179, 82, 0.9);
 }
 
 div {
@@ -23,11 +28,13 @@ div {
 }
 
 .pionRed {
-    background-color: red;
+    background-image: url('../images/backJetonRed.png');
+    background-size: cover;
 }
 
 .pionYellow {
-    background-color: #ddcd00;
+    background-image: url('../images/backJetonYellow.png');
+    background-size: cover;
 }
 
 button {
